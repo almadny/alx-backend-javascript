@@ -8,7 +8,7 @@ export default class Car {
 
   cloneCar() {
     const hasSpecies = this.constructor[Symbol.species];
-    const cloneObject = hasSpecies ? new this.constructor[Symbol.species]() : new this.constructor.__proto__();
+    const cloneObject = hasSpecies ? new this.constructor[Symbol.species]() : new this.constructor();
     return cloneObject;
   }
 }
