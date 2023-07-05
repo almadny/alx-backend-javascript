@@ -1,9 +1,9 @@
-export default function cleanSet(set, substring) {
+export default function cleanSet(set, startString) {
   const array = [];
-  if ((set instanceof Set) && (substring.length !== 0)) {
+  if ((set instanceof Set) && (startString.length !== 0)) {
     for (const element of set) {
-      if (element.startsWith(substring)) {
-        const slicedpart = element.slice(substring.length);
+      if (element.startsWith(startString)) {
+        const slicedpart = element.slice(startString.length);
         array.push(slicedpart);
       }
     }
