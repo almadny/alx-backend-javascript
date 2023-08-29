@@ -8,7 +8,7 @@ const app = http.createServer((req, res) => {
       res.statusCode = 200;
       res.end('Hello Holberton School!');
     } else if (req.url === '/students') {
-      const file = process.argv.length > 2 ? process.argv[2] : 'database.csv';
+      const file = process.argv.length > 2 ? process.argv[2] : '';
       fs.readFile(file, 'utf8')
         .then((data) => {
           const allLines = data.split('\n').filter((line) => line.trim() !== '');
@@ -24,8 +24,8 @@ const app = http.createServer((req, res) => {
           });
           res.setHeader('Content-Type', 'text/plain');
           res.statusCode = 200;
-          res.write('This is the list of our students\n');
           res.write(`Number of students: ${lines.length}\n`);
+          res.write('This is the list of our students\n');
           let result = '';
           // eslint-disable-next-line guard-for-in
           for (const field in studentsByField) {
@@ -39,8 +39,8 @@ const app = http.createServer((req, res) => {
         .catch((err) => {
           res.setHeader('Content-Type', 'text/plain');
           res.statusCode = 200;
-          res.write(err);
-          res.end();
+          res.write('This is the list of our students\n');
+          res.end('Cannot load the database');
         });
     } else {
       res.statusCode = 404;
