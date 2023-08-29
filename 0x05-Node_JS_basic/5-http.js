@@ -1,14 +1,14 @@
 const http = require('http');
 const fs = require('fs').promises;
 
-const app = http.createServer(async (req, res) => {
+const app = http.createServer((req, res) => {
   if (req.method === 'GET') {
     if (req.url === '/') {
       res.setHeader('Content-Type', 'text/plain');
       res.statusCode = 200;
       res.end('Hello Holberton School!');
     } else if (req.url === '/students') {
-      const file = process.argv[2];
+      const file = process.argv.length > 2 ? process.argv[2] : 'database.csv';
       fs.readFile(file, 'utf8')
         .then((data) => {
           const allLines = data.split('\n').filter((line) => line.trim() !== '');
