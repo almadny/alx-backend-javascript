@@ -24,15 +24,17 @@ const app = http.createServer(async (req, res) => {
           });
           res.setHeader('Content-Type', 'text/plain');
           res.statusCode = 200;
-	  res.write('This is the list of our students\n');	
+          res.write('This is the list of our students\n');
           res.write(`Number of students: ${lines.length}\n`);
+          let result = '';
           // eslint-disable-next-line guard-for-in
           for (const field in studentsByField) {
-            const result =`Number of students in ${field}: ${studentsByField[field].length}. List: ${studentsByField[field].join(', ')}\n`;
-	    const n_result = result.trim('\n');
-            res.write(n_result);
+            result += `Number of students in ${field}: ${studentsByField[field].length}. List: ${studentsByField[field].join(', ')}\n`;
+
+          // res.write(result);
           }
-          res.end();
+          const newResult = result.trim();
+          res.end(newResult);
         })
         .catch(() => {
           res.setHeader('Content-Type', 'text/plain');
