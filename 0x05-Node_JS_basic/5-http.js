@@ -36,7 +36,7 @@ const app = http.createServer((req, res) => {
           const newResult = result.trim();
           res.end(newResult);
         })
-        .catch((err) => {
+        .catch(() => {
           res.setHeader('Content-Type', 'text/plain');
           res.statusCode = 200;
           res.write('This is the list of our students\n');
