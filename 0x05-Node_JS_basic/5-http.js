@@ -36,10 +36,10 @@ const app = http.createServer((req, res) => {
           const newResult = result.trim();
           res.end(newResult);
         })
-        .catch(() => {
+        .catch((err) => {
           res.setHeader('Content-Type', 'text/plain');
-          res.statusCode = 500;
-          res.write('Cannot load the database');
+          res.statusCode = 200;
+          res.write(err);
           res.end();
         });
     } else {
